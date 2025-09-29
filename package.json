@@ -1,7 +1,7 @@
 {
-  "name": "@coreui/coreui-free-react-admin-template",
-  "version": "5.2.0",
-  "description": "CoreUI Free React Admin Template",
+  "name": "GESCOL",
+  "version": "1.0.0",
+  "description": "GESCOL - Sistema de Gestión Escolar",
   "homepage": ".",
   "main": "main.js",
   "bugs": {
@@ -21,7 +21,25 @@
     "start": "vite",
     "electron": "electron .",
     "build-electron": "npm run build && electron-builder"
-  },
+    },
+    "build": {
+      "appId": "com.gescol.frontend",
+      "productName": "GESCOL FrontEnd",
+      "directories": {
+        "output": "dist-electron"
+      },
+      "files": [
+        "build/**/*",
+        "main.js",
+        "package.json"
+      ],
+      "win": {
+        "target": "nsis"
+      },
+      "linux": {
+        "target": "AppImage"
+      }
+    },
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
     "@coreui/coreui": "^5.1.2",
