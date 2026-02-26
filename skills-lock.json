@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "forms-inputs": {
+      "source": "dylantarre/animation-principles",
+      "sourceType": "github",
+      "computedHash": "a80dcf4b11ad9de6d7fb737137939dc14ba1a9b43dbcada006be73173f5142e8"
+    }
+  }
+}
