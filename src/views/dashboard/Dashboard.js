@@ -91,12 +91,31 @@ const Dashboard = () => {
 
   // Cargar datos del dashboard al montar el componente
   useEffect(() => {
-    loadDashboardData()
-    loadAvailableSections()
-    loadAcademicPeriods()
+    // ✅ Crear AbortController para cancelar requests al desmontar
+    const abortController = new AbortController()
+    
+    const loadData = async () => {
+      try {
+        await loadDashboardData(abortController.signal)
+        await loadAvailableSections(abortController.signal)
+        await loadAcademicPeriods(abortController.signal)
+      } catch (error) {
+        // ✅ Silenciar AbortError para no mostrar error al desmontar
+        if (error.name !== 'AbortError') {
+          console.error('Error loading dashboard data:', error)
+        }
+      }
+    }
+    
+    loadData()
+    
+    // ✅ Cleanup: cancelar requests pendientes al desmontar
+    return () => {
+      abortController.abort()
+    }
   }, [])
 
-  const loadDashboardData = async () => {
+  const loadDashboardData = async (signal) => {
     try {
       setLoading(true)
       setError(null)
@@ -123,7 +142,7 @@ const Dashboard = () => {
     }
   }
 
-  const loadAcademicPeriods = async () => {
+  const loadAcademicPeriods = async (signal) => {
     try {
       console.log("📅 Cargando períodos académicos...")
 
@@ -145,7 +164,7 @@ const Dashboard = () => {
     }
   }
 
-  const loadAvailableSections = async () => {
+  const loadAvailableSections = async (signal) => {
     try {
       console.log("📚 Cargando secciones disponibles...")
       const response = await api.get("/api/dashboard/sections")

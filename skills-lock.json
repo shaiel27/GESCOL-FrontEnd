@@ -5,6 +5,11 @@
       "source": "dylantarre/animation-principles",
       "sourceType": "github",
       "computedHash": "a80dcf4b11ad9de6d7fb737137939dc14ba1a9b43dbcada006be73173f5142e8"
+    },
+    "react-performance-optimization": {
+      "source": "nickcrew/claude-ctx-plugin",
+      "sourceType": "github",
+      "computedHash": "6c806f31279047f73f3d3a8cd3031d2d2ae84d9be6885f70a8475e890061b549"
     }
   }
 }

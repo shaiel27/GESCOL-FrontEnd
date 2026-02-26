@@ -36,10 +36,18 @@ const AppHeader = () => {
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
   useEffect(() => {
-    document.addEventListener('scroll', () => {
+    // ✅ Extraer función manejadora para poder hacer cleanup
+    const handleScroll = () => {
       headerRef.current &&
         headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
-    })
+    }
+    
+    document.addEventListener('scroll', handleScroll)
+    
+    // ✅ Cleanup del event listener para evitar fuga de memoria
+    return () => {
+      document.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   return (
